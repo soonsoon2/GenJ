@@ -1,0 +1,124 @@
+---
+const base = import.meta.env.BASE_URL;
+const img = (n: string) => `${base.replace(/\/$/, '')}/images/${n}`;
+---
+<section id="stack" class="bg-section">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-num">/ 03 — PLATFORM</span>
+      <h2 class="sec-title">SAM과 SPUM이 만든<br><span class="grad">교육용 창작 플랫폼</span>.</h2>
+      <p class="sec-desc">
+        외산 AI 도구로는 학교·공공 교육에 필요한 통제·모니터링·커스텀이 어렵습니다.
+        GenJ는 자체 AI 인프라 위에 학생·교사·기관을 위한 창작 환경을 올립니다.
+      </p>
+    </div>
+
+    <div class="stack">
+      <article class="stack-card">
+        <div class="img"><img src={img('card-sam.png')} alt="SAM" loading="lazy"/></div>
+        <div class="role">SAM · LLM ROUTER</div>
+        <h3>AI 모델 라우팅</h3>
+        <p>다양한 LLM·이미지·도구 모델을 통합 호출. 사용량·비용·정책을 한 곳에서 관리.</p>
+        <ul class="bullets">
+          <li>교육 목적별 모델 선택</li>
+          <li>토큰 단위 비용 추적</li>
+          <li>기관별 정책·예산 분리</li>
+        </ul>
+      </article>
+
+      <article class="stack-card">
+        <div class="img"><img src={img('card-spum.png')} alt="SPUM BASE" loading="lazy"/></div>
+        <div class="role">SPUM BASE · ASSETS</div>
+        <h3>캐릭터 · 월드 자산</h3>
+        <p>설치 없이 웹에서 바로 캐릭터·배경·NPC 구성. 학생 결과물에 시각적 생명을.</p>
+        <ul class="bullets">
+          <li>웹 캐릭터 에디터</li>
+          <li>AI NPC 페르소나</li>
+          <li>가상 마을·월드 빌더</li>
+        </ul>
+      </article>
+
+      <article class="stack-card featured">
+        <div class="img"><img src={img('card-platform.png')} alt="GenJ Platform" loading="lazy"/></div>
+        <div class="role">GENJ · PLAYGROUND</div>
+        <h3>제작·운영·분석</h3>
+        <p>학생 제작 환경, 교사 모니터링, 작업 히스토리, 학습 패턴 분석. 기관별 커스텀 가능.</p>
+        <ul class="bullets light">
+          <li>설치 없이 웹에서 사용</li>
+          <li>교사 대시보드</li>
+          <li>지역·연령대별 주제팩</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-section { background: linear-gradient(180deg, transparent, var(--bg-2), transparent); }
+  .stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .stack-card {
+    position: relative;
+    border-radius: 22px;
+    padding: 24px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s, box-shadow .25s;
+    display: flex; flex-direction: column;
+  }
+  .stack-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  .img {
+    aspect-ratio: 4/3;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    background: var(--bg-2);
+  }
+  .img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--violet-600);
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 10px;
+  }
+  p { color: var(--ink-2); font-size: 14px; line-height: 1.55; margin-bottom: 16px; }
+
+  .bullets { list-style: none; padding: 0; margin-top: auto; }
+  .bullets li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+  .bullets li::before {
+    content: '';
+    position: absolute; left: 0; top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    background: var(--grad-brand);
+  }
+  .bullets.light li { color: rgba(255,255,255,0.92); }
+  .bullets.light li::before { background: rgba(255,255,255,0.6); }
+
+  .stack-card.featured {
+    background: var(--grad-brand);
+    color: #fff;
+    border: none;
+    box-shadow: 0 16px 48px rgba(124, 58, 237, 0.25);
+  }
+  .stack-card.featured h3, .stack-card.featured p { color: #fff; }
+  .stack-card.featured .role { color: rgba(255,255,255,0.9); }
+  .stack-card.featured .img { background: rgba(255,255,255,0.12); }
+
+  @media (max-width: 980px) {
+    .stack { grid-template-columns: 1fr; }
+  }
+</style>

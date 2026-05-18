@@ -1,0 +1,147 @@
+/* ─────────────────────────────────────────
+   GenJ — Global styles
+   Light + Isometric + Fun Educational
+   ───────────────────────────────────────── */
+:root {
+  --violet-50:  #F5F0FF;
+  --violet-100: #EBE3FF;
+  --violet-300: #C7B2FF;
+  --violet-500: #8B5CF6;
+  --violet-600: #7C3AED;
+  --violet-700: #6D28D9;
+  --indigo-600: #4F46E5;
+  --blue-600:   #2563EB;
+  --cyan-400:   #22D3EE;
+  --cyan-300:   #67E8F9;
+  --amber-400:  #FFA73C;
+  --amber-300:  #FFC470;
+
+  --bg:    #FBFAFF;
+  --bg-2:  #F4F1FE;
+  --card:  #FFFFFF;
+  --card-2:#FBFAFF;
+
+  --ink:    #1A1530;
+  --ink-2:  #4A4566;
+  --ink-3:  #7E7896;
+  --ink-4:  #B5B0CC;
+  --line:   #E9E2FA;
+  --line-2: #DDD3F5;
+
+  --grad-brand: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #22D3EE 100%);
+  --grad-soft:  linear-gradient(135deg, rgba(124,58,237,0.08), rgba(34,211,238,0.06));
+  --shadow-sm:  0 1px 2px rgba(31, 23, 73, 0.04), 0 2px 8px rgba(31, 23, 73, 0.04);
+  --shadow-md:  0 4px 12px rgba(31, 23, 73, 0.05), 0 12px 32px rgba(124, 58, 237, 0.08);
+  --shadow-lg:  0 16px 48px rgba(124, 58, 237, 0.18), 0 4px 16px rgba(31, 23, 73, 0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+::selection { background: var(--violet-600); color: #fff; }
+
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: 'Pretendard Variable', Pretendard, system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(900px 700px at 8% 0%, rgba(124,58,237,0.10), transparent 55%),
+    radial-gradient(700px 500px at 95% 12%, rgba(34,211,238,0.10), transparent 55%),
+    radial-gradient(800px 600px at 50% 100%, rgba(99,102,241,0.06), transparent 50%);
+  z-index: -2; pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  z-index: -1; pointer-events: none;
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.container { width: min(1280px, 92vw); margin: 0 auto; }
+
+/* ─────── Buttons ─────── */
+.btn {
+  padding: 13px 22px;
+  border-radius: 12px;
+  font-weight: 500; font-size: 15px;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: transform .2s, box-shadow .2s, background .2s;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+.btn-primary {
+  background: var(--grad-brand);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(124,58,237,0.32);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(124,58,237,0.42); }
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:hover { background: var(--violet-50); border-color: var(--violet-300); }
+
+/* ─────── Section heads ─────── */
+section { padding: 88px 0; }
+.sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px; max-width: 60ch; }
+.sec-num {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px; letter-spacing: 0.16em;
+  color: var(--violet-600);
+}
+.sec-title {
+  font-weight: 800;
+  font-size: clamp(32px, 4.6vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.sec-title .grad { background: var(--grad-brand); -webkit-background-clip:text; background-clip:text; color: transparent; }
+.sec-desc { color: var(--ink-2); font-size: 17px; line-height: 1.6; }
+
+/* ─────── Eyebrow ─────── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  font-size: 12px; font-weight: 500;
+  color: var(--violet-700);
+  box-shadow: var(--shadow-sm);
+}
+.eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--violet-600);
+  box-shadow: 0 0 8px var(--violet-500);
+}
+
+/* ─────── Floaty animation ─────── */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

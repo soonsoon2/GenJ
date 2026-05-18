@@ -1,0 +1,96 @@
+---
+import Logo from './Logo.astro';
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo">
+          <Logo size={32} idSuffix="footer" />
+          <span class="wordmark">Gen<span class="han">장</span></span>
+        </a>
+        <p class="lede">
+          학생이 AI와 함께 자신의 주제를 게임 · 시뮬레이션 · 디지털 트윈으로 만드는 PBL 기반 AI 창작 교육 플랫폼.
+        </p>
+      </div>
+      <div>
+        <h4>PROGRAM</h4>
+        <a href="#program">프로그램</a>
+        <a href="#method">3F 개발법</a>
+        <a href="#stack">플랫폼</a>
+        <a href="#cases">학생 사례</a>
+        <a href="#proof">교육 실증</a>
+      </div>
+      <div>
+        <h4>COMPANY</h4>
+        <a href="https://soonsoon.io" target="_blank" rel="noopener">SOONSOON FACTORY</a>
+        <a href="https://soonsoon.io/genai-game-making-high-school-summer-study-camp/" target="_blank" rel="noopener">파주 캠프 후기</a>
+        <a href="https://soonsoon.io/ai-spum-agent-soonsoon-village/" target="_blank" rel="noopener">순순빌리지</a>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <a href="mailto:soonsoon@soonsoons.com">soonsoon@soonsoons.com</a>
+        <a href="https://github.com/soonsoon2/GenJ" target="_blank" rel="noopener">github / GenJ</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© {year} SOONSOON FACTORY · All rights reserved</span>
+      <span>POWERED BY SAM · SPUM BASE · ASTRO</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 56px 0 36px;
+    margin-top: 64px;
+  }
+  .foot-grid {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 32px; margin-bottom: 32px;
+  }
+  .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-bottom: 14px; }
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1;
+  }
+  .wordmark .han {
+    font-family: 'Pretendard Variable', sans-serif;
+    font-weight: 700;
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { color: var(--ink-3); font-size: 13px; max-width: 36ch; line-height: 1.6; }
+
+  .foot-grid h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .foot-grid a {
+    display: block; padding: 4px 0;
+    color: var(--ink-2); text-decoration: none;
+    font-size: 14px;
+  }
+  .foot-grid a:hover { color: var(--violet-600); }
+
+  .foot-bot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-3);
+  }
+
+  @media (max-width: 980px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .foot-grid { grid-template-columns: 1fr; }
+    .foot-bot { flex-direction: column; gap: 8px; align-items: flex-start; }
+  }
+</style>

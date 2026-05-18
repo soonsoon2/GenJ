@@ -1,0 +1,102 @@
+---
+const items = [
+  {
+    label: '고등학교',
+    title: '파주 진로체험센터 연계',
+    desc: '2025년 파주고등진로캠프 1회 진행, 2026년 3회 운영 예정.',
+    meta: '2025 · 2026 · 두원공대 파주캠퍼스',
+  },
+  {
+    label: '대학 · 게임콘텐츠',
+    title: '두원공과대학교 게임콘텐츠공학과',
+    desc: '생성형 AI 기반 게임 기획·프로토타이핑·콘텐츠 제작 특강.',
+    meta: '2025 · 두원공대',
+  },
+  {
+    label: '대학 · 간호',
+    title: '두원공과대학교 간호학과',
+    desc: '전공 맥락 AI 활용법, 시뮬레이션형 학습, 실무 보조 가능성 탐색.',
+    meta: '2025 · 두원공대',
+  },
+  {
+    label: '대학 · 산학',
+    title: '서울대학교 정보화본부 · WE-Meet',
+    desc: 'AI 활용 교육법 협업 논의, 산학협력 업체 멘토 참여.',
+    meta: '2025 · 서울대',
+  },
+];
+---
+<section id="proof" class="bg-section">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-num">/ 05 — PROOF</span>
+      <h2 class="sec-title">기획이 아니라<br><span class="grad">교육 현장</span>에서.</h2>
+      <p class="sec-desc">
+        고등학교부터 대학·산학 프로그램까지 — GenJ 교육법은 실제 교실에서 검증되고 있습니다.
+      </p>
+    </div>
+
+    <div class="grid">
+      {items.map((it, i) => (
+        <article class="proof-card">
+          <div class="head">
+            <span class="num">P.0{i + 1}</span>
+            <span class="label">{it.label}</span>
+          </div>
+          <h3>{it.title}</h3>
+          <p>{it.desc}</p>
+          <div class="meta">{it.meta}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .proof-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .proof-card:hover { transform: translateY(-3px); border-color: var(--violet-300); box-shadow: var(--shadow-md); }
+  .proof-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 3px;
+    background: var(--grad-brand);
+    border-radius: 0 0 3px 3px;
+  }
+  .head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--violet-700);
+    background: var(--violet-50);
+    padding: 4px 8px; border-radius: 6px;
+    font-weight: 500;
+  }
+  .label {
+    font-size: 12px; color: var(--ink-3);
+  }
+  h3 {
+    font-weight: 700; font-size: 19px; letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  p { color: var(--ink-2); font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-4); letter-spacing: 0.05em;
+  }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>

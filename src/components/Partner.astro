@@ -1,0 +1,119 @@
+---
+const base = import.meta.env.BASE_URL;
+const img = (n: string) => `${base.replace(/\/$/, '')}/images/${n}`;
+const partners = [
+  {
+    title: '교육기관',
+    desc: '실제 수업 적용 · 커리큘럼 공동 개발 · 학생 피드백 수집',
+    icon: 'M3 21h18M5 21V7l8-4v18M19 21V11l-6-3M9 9h.01M9 12h.01M9 15h.01M14 12h.01M14 15h.01',
+  },
+  {
+    title: '대학 · 연구',
+    desc: 'AI 활용 교육법 검증 · 학습 데이터 분석 · 교육 효과 연구',
+    icon: 'M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5',
+  },
+  {
+    title: '공공기관',
+    desc: '지역 · 진로 · 디지털 역량 교육 프로그램화 · 운영 기준 검토',
+    icon: 'M3 21h18M3 7l9-4 9 4M5 21V11M19 21V11M9 9h.01M14 9h.01M9 13h.01M14 13h.01',
+  },
+  {
+    title: '기술 파트너',
+    desc: '클라우드 · AI 모델 · 보안 · 데이터 관리 · LLM 운영 인프라',
+    icon: 'M9 17H7a5 5 0 0 1 0-10h.81A8 8 0 0 1 23 12 M16 17h2a4 4 0 0 0 0-8h-1M12 12v9M9 18l3 3 3-3',
+  },
+  {
+    title: '콘텐츠 파트너',
+    desc: '캐릭터 · 세계관 · 지역 주제 · 교육 콘텐츠 공동 제작',
+    icon: 'M2 3h20v14H2zM2 17l6 4M22 17l-6 4M8 7h8M8 11h5',
+  },
+];
+---
+<section id="partner">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-num">/ 06 — PARTNERSHIP</span>
+      <h2 class="sec-title">함께 만들 <span class="grad">파트너</span>를 찾습니다.</h2>
+      <p class="sec-desc">
+        교육 현장 · 대학 연구 · AI 기술 · 콘텐츠 제작이 결합될 때 GenJ는 가장 큰 교육적·사업적 가치를 만듭니다.
+      </p>
+    </div>
+
+    <div class="layout">
+      <div class="visual">
+        <img src={img('partner-network.png')} alt="" loading="lazy" />
+      </div>
+      <div class="cards">
+        {partners.map((p, i) => (
+          <article class="p-card">
+            <div class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d={p.icon}/>
+              </svg>
+            </div>
+            <div>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </div>
+            <span class="num">P.0{i + 1}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 32px; align-items: stretch; }
+
+  .visual {
+    border-radius: 22px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--card);
+    box-shadow: var(--shadow-md);
+    align-self: start;
+    aspect-ratio: 3/2;
+    position: sticky; top: 100px;
+  }
+  .visual img { width: 100%; height: 100%; object-fit: cover; }
+
+  .cards { display: grid; gap: 12px; }
+  .p-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    display: grid; grid-template-columns: 48px 1fr auto; gap: 16px;
+    align-items: center;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  .p-card:hover {
+    transform: translateX(4px);
+    border-color: var(--violet-300);
+    box-shadow: var(--shadow-md);
+  }
+  .ico {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--grad-soft);
+    border: 1px solid var(--violet-100);
+    display: grid; place-items: center;
+    color: var(--violet-600);
+  }
+  .ico svg { width: 22px; height: 22px; }
+  h3 { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 2px; }
+  p { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+  .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+    .visual { position: static; aspect-ratio: 16/10; }
+  }
+</style>

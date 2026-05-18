@@ -1,0 +1,72 @@
+---
+import Logo from './Logo.astro';
+const links = [
+  { href: '#program', label: '프로그램' },
+  { href: '#method',  label: '3F 개발법' },
+  { href: '#stack',   label: '플랫폼' },
+  { href: '#cases',   label: '사례' },
+  { href: '#partner', label: '파트너십' },
+];
+---
+<nav>
+  <div class="inner">
+    <a href="#top" class="logo" aria-label="GenJ home">
+      <Logo size={36} idSuffix="nav" />
+      <span class="wordmark">Gen<span class="han">장</span></span>
+    </a>
+    <div class="links">
+      {links.map(l => <a href={l.href}>{l.label}</a>)}
+      <a href="#contact" class="cta">제안 받기 →</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky; top: 16px; z-index: 50;
+    margin: 16px auto 0;
+    width: min(1280px, 96vw);
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px; padding: 0 20px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1;
+  }
+  .wordmark .han {
+    font-family: 'Pretendard Variable', sans-serif;
+    font-weight: 700;
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .links { display: flex; gap: 22px; align-items: center; }
+  .links > a {
+    color: var(--ink-2); text-decoration: none;
+    font-weight: 500; font-size: 14px;
+    padding: 6px 4px; transition: color .15s;
+  }
+  .links > a:hover { color: var(--violet-600); }
+  .cta {
+    padding: 10px 16px;
+    background: var(--grad-brand);
+    color: #fff !important;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 13px;
+    box-shadow: 0 6px 20px rgba(124,58,237,0.32);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .cta:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(124,58,237,0.42); }
+  @media (max-width: 980px) {
+    .links > a:not(.cta) { display: none; }
+  }
+</style>

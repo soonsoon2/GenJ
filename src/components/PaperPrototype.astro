@@ -1,0 +1,106 @@
+---
+const base = import.meta.env.BASE_URL;
+const img = (n: string) => `${base.replace(/\/$/, '')}/images/${n}`;
+const rows = [
+  { k: '도구',   old: '종이 · 말 · 카드',          new: 'AI · 웹 캔버스 · 에이전트 · 리소스' },
+  { k: '진행',   old: '사람이 직접 진행',          new: 'AI가 GM · 기획자 · 개발 보조자로 참여' },
+  { k: '결과',   old: '정적 규칙 테스트',          new: '웹 게임 · 대화형 시뮬레이션 · AI NPC 환경' },
+  { k: '반복',   old: '수동 수정 중심',            new: '즉시 테스트 · 피드백 · 재생성' },
+];
+---
+<section id="paper">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-num">/ 02.5 — METHOD DETAIL</span>
+      <h2 class="sec-title">AI 페이퍼 <span class="grad">프로토타입</span>.</h2>
+      <p class="sec-desc">
+        종이로 게임 규칙을 검증하던 페이퍼 프로토타이핑을 AI 시대에 맞춰 확장.
+        학생은 AI와 대화하며 세계관·규칙·캐릭터를 만들고, 즉시 웹에서 테스트합니다.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="visual">
+        <img src={img('paper-prototype.png')} alt="Paper to digital prototype" loading="lazy" />
+      </div>
+      <div class="table">
+        <div class="table-head">
+          <div></div>
+          <div>기존 페이퍼 프로토타입</div>
+          <div class="hl">GenJ AI 페이퍼 프로토타입</div>
+        </div>
+        {rows.map(r => (
+          <div class="row">
+            <div class="key">{r.k}</div>
+            <div class="old">{r.old}</div>
+            <div class="new">{r.new}</div>
+          </div>
+        ))}
+        <p class="note">
+          AI는 정답을 대신 주는 도구가 아니라, 학생이 자신의 가설과 규칙을 빠르게 검증하게 돕는 <b>실험 파트너</b>입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 32px; align-items: stretch; }
+  .visual {
+    border-radius: 22px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--card);
+    box-shadow: var(--shadow-md);
+    aspect-ratio: 3/2;
+  }
+  .visual img { width: 100%; height: 100%; object-fit: cover; }
+
+  .table {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .table-head, .row {
+    display: grid;
+    grid-template-columns: 56px 1fr 1.2fr;
+    gap: 16px;
+    padding: 14px 8px;
+    align-items: start;
+    font-size: 14px;
+  }
+  .table-head {
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  .table-head .hl { color: var(--violet-700); }
+  .row { border-bottom: 1px dashed var(--line); }
+  .row:last-of-type { border-bottom: none; }
+  .row .key { font-weight: 600; color: var(--ink); }
+  .row .old { color: var(--ink-3); }
+  .row .new { color: var(--violet-700); font-weight: 500; }
+  .note {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: var(--violet-50);
+    border-radius: 12px;
+    color: var(--ink-2);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .note :global(b) { color: var(--violet-700); }
+
+  @media (max-width: 980px) {
+    .grid { grid-template-columns: 1fr; }
+    .table-head, .row { grid-template-columns: 60px 1fr; }
+    .table-head > div:nth-child(2),
+    .row .old { display: none; }
+  }
+</style>
