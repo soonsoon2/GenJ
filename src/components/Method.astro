@@ -1,25 +1,28 @@
 ---
+const base = import.meta.env.BASE_URL;
+const img = (n: string) => `${base.replace(/\/$/, '')}/images/${n}`;
+
 const steps = [
   {
     n: 'F.01',
     title: '빠르게 생각',
     en: 'FAST · THINKING',
     desc: 'AI와 대화하며 아이디어를 꺼내고, 막연한 질문을 목표·규칙·조건으로 구조화합니다.',
-    icon: 'M9 21h6M10 17h4M12 3a7 7 0 0 0-4 12.7c.7.7 1 1.7 1 2.7M15 18.5c0-1 .3-2 1-2.7A7 7 0 0 0 12 3',
+    img: '3f-thinking.png',
   },
   {
     n: 'F.02',
     title: '빠르게 만들기',
     en: 'FAST · MAKING',
     desc: '완성도보다 작동. 웹 미니게임·텍스트 게임·시뮬레이션으로 즉시 구현합니다.',
-    icon: 'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z',
+    img: '3f-making.png',
   },
   {
     n: 'F.03',
     title: '빠르게 피드백',
     en: 'FAST · FEEDBACK',
     desc: '친구·교사·AI 에이전트의 피드백을 받아 다시 개선하고, 그 과정을 기록합니다.',
-    icon: 'M3 12a9 9 0 1 0 9-9c-3 0-5.7 1.5-7.4 4M3 4v4h4',
+    img: '3f-feedback.png',
   },
 ];
 ---
@@ -37,14 +40,14 @@ const steps = [
     <div class="threef">
       {steps.map(s => (
         <article class="f-card">
-          <span class="num-pill">{s.n}</span>
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d={s.icon}/>
-            </svg>
+          <div class="thumb">
+            <img src={img(s.img)} alt={s.title} loading="lazy" />
+          </div>
+          <div class="meta">
+            <span class="num-pill">{s.n}</span>
+            <div class="en">{s.en}</div>
           </div>
           <h3>{s.title}</h3>
-          <div class="en">{s.en}</div>
           <p>{s.desc}</p>
         </article>
       ))}
@@ -59,7 +62,7 @@ const steps = [
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 22px;
-    padding: 28px;
+    padding: 24px;
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: transform .25s, box-shadow .25s, border-color .25s;
@@ -69,43 +72,34 @@ const steps = [
     border-color: var(--violet-300);
     box-shadow: var(--shadow-md);
   }
-  .f-card::after {
-    content: '';
-    position: absolute;
-    inset: auto -50% -50% auto;
-    width: 200px; height: 200px;
-    background: var(--grad-brand);
-    filter: blur(80px);
-    opacity: 0.10;
-    pointer-events: none;
+  .thumb {
+    aspect-ratio: 5/3;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .meta {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px;
   }
   .num-pill {
-    position: absolute; top: 20px; right: 20px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; padding: 4px 10px;
+    font-size: 11px; padding: 3px 10px;
     background: var(--violet-50);
     color: var(--violet-700);
     border-radius: 999px;
     font-weight: 500;
   }
-  .icon {
-    width: 56px; height: 56px;
-    border-radius: 16px;
-    background: var(--grad-brand);
-    display: grid; place-items: center;
-    margin-bottom: 24px;
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(124,58,237,0.22);
-  }
-  .icon svg { width: 28px; height: 28px; }
-  h3 { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 4px; }
   .en {
     font-family: 'Space Grotesk', monospace;
     font-size: 11px; letter-spacing: 0.16em;
     color: var(--ink-3); text-transform: uppercase;
-    margin-bottom: 14px;
   }
-  p { font-size: 14px; color: var(--ink-2); line-height: 1.6; position: relative; }
+  h3 { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 8px; }
+  p { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
 
   @media (max-width: 980px) { .threef { grid-template-columns: 1fr; } }
 </style>

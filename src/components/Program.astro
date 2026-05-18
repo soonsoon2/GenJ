@@ -1,28 +1,31 @@
 ---
+const base = import.meta.env.BASE_URL;
+const img = (n: string) => `${base.replace(/\/$/, '')}/images/${n}`;
+
 const items = [
   {
     title: 'AI 활용 교육',
     en: 'AI LITERACY',
     desc: '프롬프트 설계, 결과 검증, 오류 수정. 멀티 AI 활용까지.',
-    icon: 'M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3',
+    img: 'program-ai.png',
   },
   {
     title: '게임 개발 교육',
     en: 'GAME DESIGN',
     desc: '목표·규칙·난이도·피드백·캐릭터·세계관을 직접 설계.',
-    icon: 'M6 12h4M8 10v4M14 11h.01M18 12h.01M2 7h20v10H2z',
+    img: 'program-game.png',
   },
   {
     title: '시뮬레이션 학습',
     en: 'SIMULATION',
     desc: '역할·조건·사건의 결과를 디지털 환경에서 실험.',
-    icon: 'M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0zM12 3v9l6 3',
+    img: 'program-sim.png',
   },
   {
     title: '디지털 트윈 입문',
     en: 'DIGITAL TWIN',
     desc: '학교·지역·산업 공간을 디지털 환경으로 재구성.',
-    icon: 'M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z',
+    img: 'program-twin.png',
   },
 ];
 ---
@@ -39,10 +42,8 @@ const items = [
     <div class="grid">
       {items.map((it, i) => (
         <article class="item">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d={it.icon}/>
-            </svg>
+          <div class="thumb">
+            <img src={img(it.img)} alt={it.title} loading="lazy" />
           </div>
           <div class="num">0{i + 1}</div>
           <h3>{it.title}</h3>
@@ -65,41 +66,44 @@ const items = [
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 20px;
-    padding: 28px 24px;
+    padding: 20px;
     box-shadow: var(--shadow-sm);
     transition: transform .25s, border-color .25s, box-shadow .25s;
+    overflow: hidden;
   }
   .item:hover {
     transform: translateY(-4px);
     border-color: var(--violet-300);
     box-shadow: var(--shadow-md);
   }
-  .icon-box {
-    width: 48px; height: 48px;
+  .thumb {
+    aspect-ratio: 1/1;
     border-radius: 14px;
-    background: var(--grad-brand);
-    color: #fff;
-    display: grid; place-items: center;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 20px rgba(124,58,237,0.2);
+    overflow: hidden;
+    margin-bottom: 18px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
   }
-  .icon-box svg { width: 24px; height: 24px; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .num {
-    position: absolute; top: 22px; right: 22px;
+    position: absolute; top: 32px; right: 32px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--violet-600);
-    background: var(--violet-50);
+    font-size: 11px; color: var(--violet-700);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(4px);
     padding: 3px 8px; border-radius: 999px;
     font-weight: 500;
+    border: 1px solid var(--line);
   }
-  h3 { font-weight: 700; font-size: 20px; letter-spacing: -0.02em; margin-bottom: 4px; }
+  h3 { font-weight: 700; font-size: 19px; letter-spacing: -0.02em; margin-bottom: 4px; padding: 0 4px; }
   .en {
     font-family: 'Space Grotesk', monospace;
     font-size: 11px; letter-spacing: 0.16em;
     color: var(--ink-3); text-transform: uppercase;
     margin-bottom: 12px;
+    padding: 0 4px;
   }
-  p { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  p { font-size: 14px; color: var(--ink-2); line-height: 1.55; padding: 0 4px; }
 
   @media (max-width: 980px) {
     .grid { grid-template-columns: repeat(2, 1fr); }

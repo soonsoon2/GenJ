@@ -14,7 +14,11 @@ const items = [
   <div class="container">
     <div class="grid">
       <div class="visual">
-        <img src={img('limits-diagram.png')} alt="" loading="lazy" />
+        <img src={img('comparison.png')} alt="외산 도구 vs GenJ 자체 플랫폼" loading="lazy" />
+        <div class="visual-caption">
+          <span class="left-tag">CLOSED · 외산 도구</span>
+          <span class="right-tag">OPEN · GenJ 플랫폼</span>
+        </div>
       </div>
       <div>
         <span class="sec-num">/ 03.5 — WHY OWN PLATFORM</span>
@@ -50,9 +54,31 @@ const items = [
     border: 1px solid var(--line);
     background: var(--card);
     box-shadow: var(--shadow-md);
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/2;
+    position: relative;
   }
   .visual img { width: 100%; height: 100%; object-fit: cover; }
+  .visual-caption {
+    position: absolute; bottom: 12px; left: 12px; right: 12px;
+    display: flex; justify-content: space-between; gap: 8px;
+    pointer-events: none;
+  }
+  .left-tag, .right-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .left-tag {
+    background: rgba(26,21,48,0.85);
+    color: #FFC470;
+  }
+  .right-tag {
+    background: rgba(124,58,237,0.85);
+    color: #fff;
+  }
 
   .list { display: grid; gap: 10px; margin-bottom: 24px; }
   .row {
