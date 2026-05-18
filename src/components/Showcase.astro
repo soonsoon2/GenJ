@@ -1,154 +1,106 @@
 ---
 const base = import.meta.env.BASE_URL;
+const pdfHref = `${base.replace(/\/$/, '')}/GenJ_Proposal.pdf`;
 const img = (n: string) => `${base.replace(/\/$/, '')}/images/slides/${n}`;
-const slides = [
-  { src: 'full-page01.jpg', label: '표지 · GenJ 소개' },
-  { src: 'full-page02.jpg', label: '교육 철학' },
-  { src: 'full-page03.jpg', label: '3F 개발법' },
-  { src: 'full-page04.jpg', label: 'AI 페이퍼 프로토타입' },
-  { src: 'full-page05.jpg', label: '플랫폼 구성' },
-  { src: 'full-page06.jpg', label: '적용 시나리오' },
-  { src: 'full-page07.jpg', label: '교육 실증' },
-  { src: 'full-page08.jpg', label: '파트너십 제안' },
-  { src: 'full-page09.jpg', label: '기술 기반' },
-  { src: 'full-page10.jpg', label: '대표자 역량' },
-];
 ---
 <section id="showcase">
   <div class="container">
     <div class="sec-head">
-      <span class="sec-num">/ 08 — PROPOSAL DECK</span>
-      <h2 class="sec-title">제안서 <span class="grad">미리보기</span>.</h2>
+      <span class="sec-num">/ 08 — PROPOSAL</span>
+      <h2 class="sec-title">제안서 <span class="grad">다운로드</span>.</h2>
       <p class="sec-desc">
-        GenJ 교육법과 플랫폼 개발 파트너 유치 제안서의 핵심 슬라이드입니다.
-        전체 제안서는 별도 요청 시 공유드립니다.
+        GenJ 교육법과 플랫폼 개발 파트너 유치 제안서 전문입니다.
       </p>
     </div>
 
-    <div class="carousel">
-      <div class="track" id="slideTrack">
-        {slides.map((s, i) => (
-          <div class="slide">
-            <div class="frame">
-              <img src={img(s.src)} alt={s.label} loading="lazy" />
-            </div>
-            <div class="caption">
-              <span class="num">{String(i + 1).padStart(2, '0')}</span>
-              <span class="label">{s.label}</span>
-            </div>
-          </div>
-        ))}
+    <div class="download-card">
+      <div class="preview">
+        <img src={img('full-page01.jpg')} alt="GenJ 제안서 표지" loading="lazy" />
+        <div class="overlay">
+          <span class="pages">10 pages · PDF · 2.2MB</span>
+        </div>
       </div>
-    </div>
-
-    <div class="controls">
-      <button class="arrow left" id="prevSlide" aria-label="Previous">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <div class="dots" id="slideDots">
-        {slides.map((_, i) => (
-          <button class={`dot ${i === 0 ? 'active' : ''}`} data-idx={i} aria-label={`Slide ${i + 1}`}></button>
-        ))}
+      <div class="info">
+        <h3>GenJ 소개서</h3>
+        <p>교육 철학 · 3F 개발법 · 플랫폼 구성 · 적용 시나리오 · 교육 실증 · 파트너십 제안 · 기술 기반 · 대표자 역량</p>
+        <a class="dl-btn" href={pdfHref} download="GenJ_Proposal.pdf">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          제안서 다운로드 (PDF)
+        </a>
       </div>
-      <button class="arrow right" id="nextSlide" aria-label="Next">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
     </div>
   </div>
 </section>
 
 <style>
-  #showcase { padding-bottom: 48px; }
-  .carousel {
-    position: relative;
-    overflow: hidden;
-    border-radius: 22px;
+  .download-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    background: var(--card);
     border: 1px solid var(--line);
-    background: var(--bg-2);
+    border-radius: 24px;
+    padding: 24px;
     box-shadow: var(--shadow-md);
   }
-  .track {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .slide {
-    min-width: 100%;
-    flex-shrink: 0;
-  }
-  .frame {
-    aspect-ratio: 16/9;
+  .preview {
+    position: relative;
+    border-radius: 16px;
     overflow: hidden;
-  }
-  .frame img {
-    width: 100%; height: 100%; object-fit: contain;
+    aspect-ratio: 16/9;
     background: #0E0B1E;
   }
-  .caption {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 20px;
-    background: var(--card);
-    border-top: 1px solid var(--line);
+  .preview img { width: 100%; height: 100%; object-fit: contain; }
+  .overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 12px 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
   }
-  .caption .num {
+  .pages {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--violet-600);
-    background: var(--violet-50);
-    padding: 3px 8px; border-radius: 6px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.05em;
+  }
+  .info { padding: 8px 16px; }
+  .info h3 {
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .info p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--grad-brand);
+    color: #fff;
+    border-radius: 12px;
     font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(124,58,237,0.32);
+    transition: transform .2s, box-shadow .2s;
   }
-  .caption .label { font-size: 14px; color: var(--ink-2); font-weight: 500; }
+  .dl-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(124,58,237,0.42);
+  }
 
-  .controls {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px;
-    margin-top: 20px;
+  @media (max-width: 768px) {
+    .download-card { grid-template-columns: 1fr; }
   }
-  .arrow {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    background: var(--card);
-    display: grid; place-items: center;
-    cursor: pointer;
-    color: var(--ink);
-    transition: all .2s;
-    box-shadow: var(--shadow-sm);
-  }
-  .arrow:hover { border-color: var(--violet-300); color: var(--violet-600); }
-  .dots { display: flex; gap: 6px; }
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    border: none;
-    background: var(--line);
-    cursor: pointer;
-    transition: all .2s;
-  }
-  .dot.active { background: var(--violet-600); transform: scale(1.3); }
 </style>
-
-<script>
-  const track = document.getElementById('slideTrack') as HTMLElement;
-  const dots = document.querySelectorAll('#slideDots .dot');
-  const prev = document.getElementById('prevSlide');
-  const next = document.getElementById('nextSlide');
-  const total = dots.length;
-  let current = 0;
-
-  function goTo(idx: number) {
-    current = ((idx % total) + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-
-  prev?.addEventListener('click', () => goTo(current - 1));
-  next?.addEventListener('click', () => goTo(current + 1));
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-
-  // Auto-advance every 6s
-  let timer = setInterval(() => goTo(current + 1), 6000);
-  track.parentElement?.addEventListener('mouseenter', () => clearInterval(timer));
-  track.parentElement?.addEventListener('mouseleave', () => {
-    timer = setInterval(() => goTo(current + 1), 6000);
-  });
-</script>
